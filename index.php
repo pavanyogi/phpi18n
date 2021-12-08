@@ -1,6 +1,14 @@
 <?php
 
-list($lang, $domain) = explode('.', $_SERVER['HTTP_HOST'], 2);
+if (substr($_SERVER['HTTP_HOST'], -6) == '.co.uk') {
+
+    $lang = 'en';
+
+} elseif (substr($_SERVER['HTTP_HOST'], -3) == '.es') {
+
+    $lang = 'es';
+
+}
 
 if ($lang == 'en') {
 
