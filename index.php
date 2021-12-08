@@ -1,8 +1,6 @@
 <?php
 
-var_dump($_GET);
-
-$lang = $_GET['lang'];
+list($lang, $domain) = explode('.', $_SERVER['HTTP_HOST'], 2);
 
 if ($lang == 'en') {
 
