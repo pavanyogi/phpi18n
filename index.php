@@ -2,11 +2,15 @@
 
 require 'src/App/I18n.php';
 
-$i18n = new App\I18n(['en', 'es']);
+$i18n = new App\I18n(['en_GB', 'es']);
 
-list($lang, $domain) = explode('.', $_SERVER['HTTP_HOST'], 2);
+list($subdomain, $domain) = explode('.', $_SERVER['HTTP_HOST'], 2);
 
-if ($lang == 'en') {
+$lang = Locale::canonicalize($subdomain);
+
+var_dump($lang);
+
+if ($lang == 'en_GB') {
 
     $trans = [
         'title' => 'Example',
