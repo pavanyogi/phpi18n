@@ -6,7 +6,7 @@ $i18n = new App\I18n(['en_GB', 'es']);
 
 list($subdomain, $domain) = explode('.', $_SERVER['HTTP_HOST'], 2);
 
-$lang = Locale::canonicalize($subdomain);
+$lang = $i18n->getBestMatch($subdomain);
 
 var_dump($lang);
 
