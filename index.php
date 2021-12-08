@@ -1,14 +1,10 @@
 <?php
 
-if (substr($_SERVER['HTTP_HOST'], -6) == '.co.uk') {
+require 'src/App/I18n.php';
 
-    $lang = 'en';
+$i18n = new App\I18n(['en', 'es']);
 
-} elseif (substr($_SERVER['HTTP_HOST'], -3) == '.es') {
-
-    $lang = 'es';
-
-}
+list($lang, $domain) = explode('.', $_SERVER['HTTP_HOST'], 2);
 
 if ($lang == 'en') {
 
