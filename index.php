@@ -45,5 +45,7 @@ _bind_textdomain_codeset($domain, 'UTF-8');
 
     <p><?= __('Hello and welcome!') ?></p>
 
+    <p><?= __('Thank you') ?></p>
+
 </body>
 </html>
