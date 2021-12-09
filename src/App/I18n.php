@@ -112,39 +112,7 @@ class I18n
                   
         }
         
-        $locale = $this->getBestMatchFromIPAddress();
-        
-        if ($locale !== null) {
-          
-            return $locale;          
-                  
-        }
-        
         return $this->getDefault();        
-    }
-
-    private function getBestMatchFromIPAddress()
-    {
-        try {
-
-            $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__.'/../..');
-            $dotenv->load();
-
-            $client = new \ipinfo\ipinfo\IPinfo($_ENV['SECRET_KEY_IPINFO']);
-            
-            $details = $client->getDetails($_SERVER['REMOTE_ADDR']);
-                                    
-            if (isset($details->country)) {
-            
-                return $this->getBestMatch($details->country);
-              
-            }            
-            
-        } catch (\ipinfo\ipinfo\IPinfoException $e) {
-
-            echo $e->getMessage();
-
-        }            
     }
 }
 
