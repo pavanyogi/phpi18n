@@ -65,6 +65,24 @@ class I18n
         
         return array_keys($accepted_locales);
     }
+    
+    public function getBestMatchFromHeader()
+    {
+        $accepted_locales = $this->getAcceptedLocales();
+        
+        foreach ($accepted_locales as $locale) {
+
+            $locale = \Locale::canonicalize($locale);
+                      
+            if (in_array($locale, $this->supported_locales)) {
+            
+                return $locale;
+              
+            }                      
+        }        
+        
+        return null;
+    }    
 }
 
 

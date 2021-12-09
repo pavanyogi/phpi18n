@@ -14,6 +14,10 @@ print_r($i18n->getAcceptedLocales());
 
 if ($lang === null) {
   
+    $lang = $i18n->getBestMatchFromHeader(); 
+    var_dump($lang);
+    exit;
+  
     $default = substr($i18n->getDefault(), 0, 2);
     
     header("Location: http://" . $default . ".phpi18n.localhost/");
