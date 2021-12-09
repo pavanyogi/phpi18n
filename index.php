@@ -20,31 +20,30 @@ if ($locale === null) {
       
 }
 
-putenv("LANG=$locale");
-putenv("LANGUAGE=$locale");
+PhpMyAdmin\MoTranslator\Loader::loadFunctions();
 
-setlocale(LC_ALL, $locale);
+_setlocale(LC_ALL, $locale);
 
 $domain = 'messages';
 
-textdomain($domain);
+_textdomain($domain);
 
-bindtextdomain($domain, 'locales');
+_bindtextdomain($domain, 'locales');
 
-bind_textdomain_codeset($domain, 'UTF-8');
+_bind_textdomain_codeset($domain, 'UTF-8');
 
 ?>
 <!DOCTYPE html>
 <html lang="<?= str_replace('_', '-', $locale) ?>">
 <head>
     <meta charset="UTF-8">
-    <title><?= _('Example') ?></title>
+    <title><?= __('Example') ?></title>
 </head>
 <body>
 
-    <h1><?= _('Home') ?></h1>
+    <h1><?= __('Home') ?></h1>
 
-    <p><?= _('Hello and welcome!') ?></p>
+    <p><?= __('Hello and welcome!') ?></p>
 
 </body>
 </html>
