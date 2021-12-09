@@ -70,9 +70,13 @@ class I18n
     {
         $accepted_locales = $this->getAcceptedLocales();
         
-        foreach ($accepted_locales as $locale) {
+        array_walk($accepted_locales, function(&$locale) {
 
             $locale = \Locale::canonicalize($locale);
+
+        });
+        
+        foreach ($accepted_locales as $locale) {
                       
             if (in_array($locale, $this->supported_locales)) {
             
@@ -80,10 +84,28 @@ class I18n
               
             }                      
         }        
+                    
+        foreach ($accepted_locales as $locale) {
         
+            $lang = substr($locale, 0, 2);
+            
+            foreach ($this->supported_locales as $supported_locale) {
+              
+                if (substr($supported_locale, 0, 2) == $lang) {
+                
+                    return $supported_locale;
+                  
+                }
+            }
+        }
+                    
         return null;
     }    
 }
+
+
+
+
 
 
 
