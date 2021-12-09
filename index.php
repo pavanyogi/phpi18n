@@ -8,6 +8,15 @@ list($subdomain, $domain) = explode('.', $_SERVER['HTTP_HOST'], 2);
 
 $lang = $i18n->getBestMatch($subdomain);
 
+if ($lang === null) {
+  
+    $default = substr($i18n->getDefault(), 0, 2);
+    
+    header("Location: http://" . $default . ".phpi18n.localhost/");
+    exit;
+      
+}
+
 var_dump($lang);
 
 if ($lang == 'en_GB') {
