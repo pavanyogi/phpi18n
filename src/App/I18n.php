@@ -2,9 +2,6 @@
 
 namespace App;
 
-
-
-
 class I18n
 {
     private $supported_locales;
@@ -107,13 +104,13 @@ class I18n
     
     public function getLocaleForRedirect()
     {
-        // $locale = $this->getBestMatchFromHeader();
+        $locale = $this->getBestMatchFromHeader();
         
-        // if ($locale !== null) {
+        if ($locale !== null) {
           
-        //     return $locale;          
+            return $locale;          
                   
-        // }
+        }
         
         $locale = $this->getBestMatchFromIPAddress();
         
@@ -135,11 +132,7 @@ class I18n
 
             $client = new \ipinfo\ipinfo\IPinfo($_ENV['SECRET_KEY_IPINFO']);
             
-            // $details = $client->getDetails($_SERVER['REMOTE_ADDR']);
-            $details = $client->getDetails('207.228.238.7');
-
-            var_dump($details);
-            exit;
+            $details = $client->getDetails($_SERVER['REMOTE_ADDR']);
                                     
             if (isset($details->country)) {
             
