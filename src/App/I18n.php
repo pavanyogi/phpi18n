@@ -2,6 +2,9 @@
 
 namespace App;
 
+
+
+
 class I18n
 {
     private $supported_locales;
@@ -104,7 +107,15 @@ class I18n
     
     public function getLocaleForRedirect()
     {
-        $locale = $this->getBestMatchFromHeader();
+        // $locale = $this->getBestMatchFromHeader();
+        
+        // if ($locale !== null) {
+          
+        //     return $locale;          
+                  
+        // }
+        
+        $locale = $this->getBestMatchFromIPAddress();
         
         if ($locale !== null) {
           
@@ -113,6 +124,34 @@ class I18n
         }
         
         return $this->getDefault();        
+    }
+
+    private function getBestMatchFromIPAddress()
+    {
+        try {
+
+            $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__.'/../..');
+            $dotenv->load();
+
+            $client = new \ipinfo\ipinfo\IPinfo($_ENV['SECRET_KEY_IPINFO']);
+            
+            // $details = $client->getDetails($_SERVER['REMOTE_ADDR']);
+            $details = $client->getDetails('207.228.238.7');
+
+            var_dump($details);
+            exit;
+                                    
+            if (isset($details->country)) {
+            
+                return $this->getBestMatch($details->country);
+              
+            }            
+            
+        } catch (\ipinfo\ipinfo\IPinfoException $e) {
+
+            echo $e->getMessage();
+
+        }            
     }
 }
 
