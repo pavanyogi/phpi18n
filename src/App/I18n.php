@@ -37,8 +37,38 @@ class I18n
     public function getDefault()
     {
         return $this->supported_locales[0];      
-    }    
+    } 
+    
+    public function getAcceptedLocales()
+    {
+        if ($_SERVER['HTTP_ACCEPT_LANGUAGE'] == '') {
+        
+            return [];
+          
+        }
+        
+        $accepted_locales = [];      
+        
+        $parts = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+        
+        foreach ($parts as $part) {
+          
+            $locale_and_pref = explode(';q=', $part);
+            
+            $locale = trim($locale_and_pref[0]);
+            $pref = $locale_and_pref[1] ?? 1.0;
+          
+            $accepted_locales[$locale] = $pref;
+        }
+        
+        arsort($accepted_locales);
+        
+        return array_keys($accepted_locales);
+    }
 }
+
+
+
 
 
 

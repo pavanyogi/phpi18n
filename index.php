@@ -8,6 +8,10 @@ list($subdomain, $domain) = explode('.', $_SERVER['HTTP_HOST'], 2);
 
 $lang = $i18n->getBestMatch($subdomain);
 
+var_dump($_SERVER['HTTP_ACCEPT_LANGUAGE']);
+
+print_r($i18n->getAcceptedLocales());
+
 if ($lang === null) {
   
     $default = substr($i18n->getDefault(), 0, 2);
