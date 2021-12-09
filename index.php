@@ -19,36 +19,18 @@ if ($locale === null) {
       
 }
 
-if ($locale == 'en_GB') {
-
-    $trans = [
-        'title' => 'Example',
-        'header' => 'Home',
-        'welcome' => 'Hello and welcome!'
-    ];
-
-} elseif ($locale == 'es') {
-
-    $trans = [
-        'title' => 'Ejemplo',
-        'header' => 'Inicio',
-        'welcome' => '¡Hola y bienvenido!'
-    ];
-
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="<?= str_replace('_', '-', $locale) ?>">
 <head>
     <meta charset="UTF-8">
-    <title><?= $trans['title'] ?></title>
+    <title><?= _('Example') ?></title>
 </head>
 <body>
 
-    <h1><?= $trans['header'] ?></h1>
+    <h1><?= _('Home') ?></h1>
 
-    <p><?= $trans['welcome'] ?></p>
+    <p><?= _('Hello and welcome!') ?></p>
 
 </body>
 </html>
