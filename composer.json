@@ -3,6 +3,7 @@
         "ipinfo/ipinfo": "^1.1",
         "vlucas/phpdotenv": "^5.4",
         "ext-gettext": "*",
-        "ext-intl": "*"
+        "ext-intl": "*",
+        "phpmyadmin/motranslator": "^5.2"
     }
 }
