@@ -34,12 +34,12 @@ class I18n
         return null;
     }
     
-    public function getDefault()
+    private function getDefault()
     {
         return $this->supported_locales[0];      
     } 
     
-    public function getAcceptedLocales()
+    private function getAcceptedLocales()
     {
         if ($_SERVER['HTTP_ACCEPT_LANGUAGE'] == '') {
         
@@ -66,7 +66,7 @@ class I18n
         return array_keys($accepted_locales);
     }
     
-    public function getBestMatchFromHeader()
+    private function getBestMatchFromHeader()
     {
         $accepted_locales = $this->getAcceptedLocales();
         
@@ -100,7 +100,20 @@ class I18n
         }
                     
         return null;
-    }    
+    }
+    
+    public function getLocaleForRedirect()
+    {
+        $locale = $this->getBestMatchFromHeader();
+        
+        if ($locale !== null) {
+          
+            return $locale;          
+                  
+        }
+        
+        return $this->getDefault();        
+    }
 }
 
 
