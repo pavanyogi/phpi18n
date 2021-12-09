@@ -17,8 +17,6 @@ if ($lang === null) {
       
 }
 
-var_dump($lang);
-
 if ($lang == 'en_GB') {
 
     $trans = [
@@ -39,7 +37,7 @@ if ($lang == 'en_GB') {
 
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="<?= str_replace('_', '-', $lang) ?>">
 <head>
     <meta charset="UTF-8">
     <title><?= $trans['title'] ?></title>
