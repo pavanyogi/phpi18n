@@ -1,8 +1,8 @@
 <?php
 
-require 'src/App/I18n.php';
+require __DIR__.'/src/App/I18n.php';
 
-$i18n = new App\I18n(['en_GB', 'es']);
+$i18n = new App\I18n(['en_GB', 'es_ES']);
 
 list($subdomain, $domain) = explode('.', $_SERVER['HTTP_HOST'], 2);
 
@@ -18,6 +18,19 @@ if ($locale === null) {
     exit;
       
 }
+
+putenv("LANG=$locale");
+putenv("LANGUAGE=$locale");
+
+setlocale(LC_ALL, $locale);
+
+$domain = 'messages';
+
+textdomain($domain);
+
+bindtextdomain($domain, 'locales');
+
+bind_textdomain_codeset($domain, 'UTF-8');
 
 ?>
 <!DOCTYPE html>
