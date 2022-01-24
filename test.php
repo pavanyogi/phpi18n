@@ -1,5 +1,6 @@
 <?php
 
+
 $locale = "es_ES";
 // $locale = "en";
 
